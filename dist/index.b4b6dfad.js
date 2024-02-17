@@ -27318,82 +27318,33 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "The Dark Knight",
-            description: "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. The Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice..",
-            genre: {
-                name: "Action",
-                description: "Action films are a film genre where the protagonist or protagonists find themselves in a series of challenges that typically include violence, extended fighting, physical feats, and frantic chases."
-            },
-            director: {
-                name: "Christopher Nolan",
-                bio: "Christopher Edward Nolan is a British-American film director, producer, and screenwriter.",
-                birth: "1970"
-            },
-            imagePath: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
-            actors: [
-                "Christian Bale",
-                "Heath Ledger"
-            ],
-            featured: true
-        },
-        {
-            id: 2,
-            title: "Pulp Fiction",
-            description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-            genre: {
-                name: "Crime",
-                description: "Crime films are films that focus on the lives of criminals."
-            },
-            director: {
-                name: "Quentin Tarantino",
-                bio: "Quentin Jerome Tarantino is an American film director, producer, screenwriter, and actor.",
-                birth: "1963"
-            },
-            imagePath: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
-            actors: [
-                "John Travolta",
-                "Samuel L. Jackson"
-            ],
-            featured: true
-        },
-        {
-            id: 3,
-            title: "Forrest Gump",
-            description: "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold through the perspective of an Alabama man with an IQ of 75.",
-            genre: {
-                name: "Drama",
-                description: "Drama films are a genre of narrative fiction intended to be more serious than humorous in tone, focusing on in-depth development of realistic characters who must deal with realistic emotional struggles."
-            },
-            director: {
-                name: "Robert Zemeckis",
-                bio: "Robert Lee Zemeckis is an American film director, producer, and screenwriter.",
-                birth: "1951"
-            },
-            imagePath: "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
-            actors: [
-                "Tom Hanks",
-                "Robin Wright"
-            ],
-            featured: true
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.docs.map((doc)=>{
+                return {
+                    id: doc.id,
+                    title: doc.Title,
+                    director: doc.Director.Name
+                };
+            });
+            setMovies(moviesFromApi);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 72,
+        lineNumber: 27,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty."
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 80,
+        lineNumber: 35,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27405,17 +27356,17 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 87,
+                lineNumber: 42,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 84,
+        lineNumber: 39,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "iPHClCz0HhNlKbX1uuJTmNkK0l0=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
