@@ -22,11 +22,16 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.map((doc) => {
+        const moviesFromApi = data.map((movie) => {
           return {
-            id: doc.id,
-            title: doc.Title,
-            director: doc.Director.Name,
+            id: movie._id,
+            title: movie.Title,
+            description: movie.Description,
+            director: movie.Director,
+            genre: movie.Genre,
+            actors: movie.Actors,
+            image: movie.ImagePath,
+            featured: movie.Featured
           };
         });
         setMovies(moviesFromApi);
@@ -52,13 +57,31 @@ export const MainView = () => {
 
   //Single movie view
   if (selectedMovie) {
+    let similarMovies = movies.filter(movie => {
+      return selectedMovie.genre.Name === movie,genre.Name && selectedMovie.id !== movie.id
+    });
     return (
-      <MovieView
+      <>
+       <MovieView
         movie={selectedMovie}
         onBackClick={() => setSelectedMovie(null)}
       />
-    );
-  }
+      <hr />
+      <h2>Similar Movies</h2>
+      {similarMovies.map((movie) => {   
+        return (
+          <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }}
+        />
+        )
+
+      })}
+    </>
+  )};
 
   //if array is empty
   if (movies.length === 0) {
