@@ -10,11 +10,16 @@ export const MainView = () => {
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.docs.map((doc) => {
+        const moviesFromApi = data.map((movie) => {
           return {
-            id: doc.id,
-            title: doc.Title,
-            director: doc.Director.Name,
+            id: movie._id,
+            title: movie.Title,
+            description: movie.Description,
+            director: movie.Director,
+            genre: movie.Genre,
+            actors: movie.Actors,
+            image: movie.ImagePath,
+            featured: movie.Featured
           };
         });
         setMovies(moviesFromApi);
@@ -23,7 +28,9 @@ export const MainView = () => {
 
   //with bonus task 2 section 3.4
   if (selectedMovie) {
-    let similarMovies = movies.filter(movie.genre)
+    let similarMovies = movies.filter(movie => {
+      return selectedMovie.genre.Name === movie,genre.Name && selectedMovie.id !== movie.id
+    });
     return (
       <>
        <MovieView
