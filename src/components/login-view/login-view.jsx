@@ -22,6 +22,8 @@ export const LoginView = ({ onLoggedIn }) => {
       .then((data) => {
         console.log("Login response: ", data);
         if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));// persist login session with local storage
+          localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user");
@@ -31,12 +33,6 @@ export const LoginView = ({ onLoggedIn }) => {
         alert("Something went wrong");
       });
 
-      if (data.user) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorgae.setItem("token", data.token);
-      } else {
-        alert("No such user")
-      };
 
   return (
     <form onSubmit={handleSubmit}>
