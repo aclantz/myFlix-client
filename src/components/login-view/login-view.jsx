@@ -8,8 +8,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault(); //prevent default behavior of form to reload entire page
 
     const data = {
-      access: username,
-      secret: password,
+      username: username,
+      password: password,
     };
 
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/login", {
@@ -33,29 +33,29 @@ export const LoginView = ({ onLoggedIn }) => {
       .catch((e) => {
         alert("Something went wrong");
       });
-
-    return (
-      <>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username:
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <label htmlFor="">
-            Password:
-            <input
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </>
-    );
   };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <label htmlFor="">
+          Password:
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </>
+  );
 };
