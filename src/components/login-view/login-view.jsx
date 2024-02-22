@@ -6,6 +6,7 @@ export const LoginView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault(); //prevent default behavior of form to reload entire page
+
     const data = {
       access: username,
       secret: password,
@@ -23,7 +24,7 @@ export const LoginView = ({ onLoggedIn }) => {
         console.log("Login response: ", data);
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user)); // persist login session with local storage
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("token", data.token); // "
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user");
@@ -34,25 +35,27 @@ export const LoginView = ({ onLoggedIn }) => {
       });
 
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label htmlFor="">
-          Password:
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+      <>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+          <label htmlFor="">
+            Password:
+            <input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </>
     );
   };
 };

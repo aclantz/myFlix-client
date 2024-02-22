@@ -9,7 +9,7 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-  const storedToken = localStorage.getItem('token');
+  const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const MainView = () => {
             genre: movie.Genre,
             actors: movie.Actors,
             image: movie.ImagePath,
-            featured: movie.Featured
+            featured: movie.Featured,
           };
         });
         setMovies(moviesFromApi);
@@ -39,49 +39,54 @@ export const MainView = () => {
   }, [token]);
 
   if (!user) {
+    console.log("User:", user);
+    console.log("Token:", token);
     return (
-     <>
-     <h2>Login</h2>
-      <loginView
-        onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-        }}
-      />
-      <hr />
-      <h2>Sign Up</h2>
-      <SignUpView />
-     </>
+      <>
+        <h2>Login</h2>
+       <LoginView
+       onLoggedIn={(user, token) => {
+        setUser(user);
+        setToken(token);
+       }}
+       />
+       <hr />
+        <h2>Sign Up</h2>
+        <SignUpView />
+      </>
     );
   }
 
   //Single movie view
   if (selectedMovie) {
-    let similarMovies = movies.filter(movie => {
-      return selectedMovie.genre.Name === movie,genre.Name && selectedMovie.id !== movie.id
+    let similarMovies = movies.filter((movie) => {
+      return (
+        selectedMovie.genre.Name === movie,
+        genre.Name && selectedMovie.id !== movie.id
+      );
     });
     return (
       <>
-       <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
-      <hr />
-      <h2>Similar Movies</h2>
-      {similarMovies.map((movie) => {   
-        return (
-          <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
         />
-        )
-
-      })}
-    </>
-  )};
+        <hr />
+        <h2>Similar Movies</h2>
+        {similarMovies.map((movie) => {
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          );
+        })}
+      </>
+    );
+  }
 
   //if array is empty
   if (movies.length === 0) {
