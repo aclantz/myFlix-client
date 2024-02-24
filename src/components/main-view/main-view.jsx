@@ -18,7 +18,7 @@ export const MainView = () => {
     }
 
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies", {
-      header: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
