@@ -7,10 +7,10 @@ import { SignUpView } from "../signup-view/signup-view";
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
   const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
 
   useEffect(() => {
     if (!token) {
@@ -18,7 +18,7 @@ export const MainView = () => {
     }
 
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies", {
-      header: { Authorization: "Bearer ${token}" },
+      header: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -44,13 +44,13 @@ export const MainView = () => {
     return (
       <>
         <h2>Login</h2>
-       <LoginView
-       onLoggedIn={(user, token) => {
-        setUser(user);
-        setToken(token);
-       }}
-       />
-       <hr />
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+        <hr />
         <h2>Sign Up</h2>
         <SignUpView />
       </>
@@ -90,7 +90,20 @@ export const MainView = () => {
 
   //if array is empty
   if (movies.length === 0) {
-    return <div>The list is empty.</div>;
+    return (
+      <div>
+        The list is empty.
+        <hr />
+        <button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}>
+          Logout
+        </button>
+      </div>
+    );
   }
 
   return (
