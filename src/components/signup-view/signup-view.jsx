@@ -11,10 +11,10 @@ export const SignUpView = () => {
     event.preventDefault();
 
     const data = {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday
     };
 
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/users", {
@@ -28,7 +28,8 @@ export const SignUpView = () => {
         alert("signup successful");
         window.location.reload();
       } else {
-        alert("Signup failed")
+        console.log("Error response:", response.status, response.statusText);
+        alert("Signup failed");
       }
     });
   };
