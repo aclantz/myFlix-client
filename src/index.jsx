@@ -1,9 +1,9 @@
-import { createRoot } from 'react-dom/client';
-import { MainView } from './components/main-view/main-view';
+import { createRoot } from "react-dom/client";
+import { MainView } from "./components/main-view/main-view";
 
 import "./index.scss";
 
-// Main component (will eventually use all the others)
+// Main component
 const MyFlixApplication = () => {
   return <MainView />;
 };

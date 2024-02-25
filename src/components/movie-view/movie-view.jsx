@@ -2,6 +2,9 @@ import propTypes from "prop-types";
 
 //do the connection points need to capitalized if they are on the api? yes?
 export const MovieView = ({ movie, onBackClick }) => {
+
+
+  
   return (
     <div>
       <div>
@@ -36,20 +39,19 @@ export const MovieView = ({ movie, onBackClick }) => {
   );
 };
 
-
-MovieView.propTypes = { //added capitol to name, description, bio, etc 2/24 2:06
+MovieView.propTypes = {
   movie: propTypes.shape({
     imagePath: propTypes.string,
     title: propTypes.string.isRequired,
     description: propTypes.string.isRequired,
     genre: propTypes.shape({
       Name: propTypes.string.isRequired,
-      Description: propTypes.string
+      Description: propTypes.string,
     }),
     director: propTypes.shape({
       Name: propTypes.string.isRequired,
-      Bio: propTypes.string
-    }) 
+      Bio: propTypes.string,
+    }),
   }),
-  onBackClick: propTypes.func.isRequired
-}
+  onBackClick: propTypes.func.isRequired,
+};
