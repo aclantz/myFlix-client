@@ -100,7 +100,7 @@ export const MainView = () => {
             setToken(null);
             localStorage.clear();
           }}>
-          Logout
+          Log-out
         </button>
       </div>
     );
@@ -117,8 +117,7 @@ export const MainView = () => {
               setSelectedMovie(newSelectedMovie);
             }}
           />
-        );
-      })}
+      )})}
       <button
         onClick={() => {
           setUser(null);
