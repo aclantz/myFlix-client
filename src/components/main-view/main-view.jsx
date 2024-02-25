@@ -59,10 +59,8 @@ export const MainView = () => {
 
   //Single movie view
   if (selectedMovie) {
-    let similarMovies = movies.filter((movie) => {
-      return (
-        selectedMovie.genre.Name === movie.genre.Name && selectedMovie.id !== movie.id
-      );
+    let similarMovies = movies.filter(movie => {
+      return selectedMovie.genre.Name === movie.genre.Name && selectedMovie.id !== movie.id
     });
     return (
       <>
