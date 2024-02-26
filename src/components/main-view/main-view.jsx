@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignUpView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -44,7 +45,7 @@ export const MainView = () => {
     console.log("User:", user);
     console.log("Token:", token);
     return (
-      <Row>
+      <Row className="justify-content-md-center">
         <Col md={5}>
           <h2>Login</h2>
           <LoginView
@@ -126,15 +127,17 @@ export const MainView = () => {
           />
         </Col>
       ))}
-      <button
-        className="my-5"
+      <hr className="my-3" />
+      <Button
+        className="my-5 w-25" 
+        md={1} 
         onClick={() => {
           setUser(null);
           setToken(null);
           localStorage.clear();
         }}>
         Logout
-      </button>
+      </Button>
     </Row>
   );
 };
