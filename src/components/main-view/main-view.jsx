@@ -75,7 +75,7 @@ export const MainView = () => {
             onBackClick={() => setSelectedMovie(null)}
           />
         </Col>
-        <hr />
+        <hr className="my-3" />
         <Col md={3}>
           <h2>Similar Movies</h2>
           {similarMovies.map((movie) => {
