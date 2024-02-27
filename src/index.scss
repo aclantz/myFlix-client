@@ -1,1 +1,13 @@
+$body-bg: black;
+$body-color: white;
+$primary: #cf4e3a;
+
+img {
+  width: 100%;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';

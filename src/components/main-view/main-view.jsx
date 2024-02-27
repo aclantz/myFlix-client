@@ -70,8 +70,8 @@ export const MainView = () => {
       );
     });
     return (
-      <Row>
-        <Col md={8}>
+      <Row className="justify-content-md-center">
+        <Col md={10}>
           <MovieView
             movie={selectedMovie}
             onBackClick={() => setSelectedMovie(null)}
@@ -88,6 +88,7 @@ export const MainView = () => {
                 onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
                 }}
+               
               />
             );
           })}
