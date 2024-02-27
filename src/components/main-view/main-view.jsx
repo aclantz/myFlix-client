@@ -47,15 +47,13 @@ export const MainView = () => {
     return (
       <Row className="justify-content-md-center">
         <Col md={5}>
-          <h2>Login</h2>
           <LoginView
             onLoggedIn={(user, token) => {
               setUser(user);
               setToken(token);
             }}
           />
-          <hr />
-          <h2>Sign Up</h2>
+          <br />
           <SignUpView />
         </Col>
       </Row>
@@ -103,14 +101,14 @@ export const MainView = () => {
         <Col md={8}>
           The list is empty.
           <hr />
-          <button
+          <Button
             onClick={() => {
               setUser(null);
               setToken(null);
               localStorage.clear();
             }}>
             Log-out
-          </button>
+          </Button>
         </Col>
       </Row>
     );
