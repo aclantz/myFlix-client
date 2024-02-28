@@ -1,8 +1,13 @@
 import propTypes from "prop-types";
 import { Button, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-//do the connection points need to capitalized if they are on the api? yes?
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+  const movie = movies.find((m) => m.id === movieId);
+
+
   return (
     <div>
       <Row>
@@ -45,7 +50,9 @@ export const MovieView = ({ movie, onBackClick }) => {
             <span>{movie.genre.Description}</span>
           </div>
           <br />
-          <Button onClick={onBackClick}>Back</Button>
+          <Link to="/">
+            <Button onClick={onBackClick}>Back</Button>
+          </Link>
         </Col>
       </Row>
     </div>
