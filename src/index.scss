@@ -1,5 +1,18 @@
-$color: steelblue;
+$body-bg: black;
+$body-color: white;
+$primary: #cf4e3a;
 
-.my-flix {
-  color: $color;
+img {
+  width: 100%;
 }
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.card {
+  background-color: #222222;
+}
+
+
+@import '~bootstrap/scss/bootstrap.scss';

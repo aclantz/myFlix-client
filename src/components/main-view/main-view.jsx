@@ -3,6 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignUpView } from "../signup-view/signup-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -42,88 +45,101 @@ export const MainView = () => {
     console.log("User:", user);
     console.log("Token:", token);
     return (
-      <>
-        <h2>Login</h2>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        <hr />
-        <h2>Sign Up</h2>
-        <SignUpView />
-      </>
+      <Row className="justify-content-md-center">
+        <Col md={5}>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }}
+          />
+          <br />
+          <SignUpView />
+        </Col>
+      </Row>
     );
   }
 
-  //Single movie view
   if (selectedMovie) {
-    let similarMovies = movies.filter(movie => {
-      return selectedMovie.genre.Name === movie.genre.Name && selectedMovie.id !== movie.id
+    let similarMovies = movies.filter((movie) => {
+      return (
+        selectedMovie.genre.Name === movie.genre.Name &&
+        selectedMovie.id !== movie.id
+      );
     });
     return (
       <>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <hr />
-        <h2>Similar Movies</h2>
-        {similarMovies.map((movie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) => {
-                setSelectedMovie(newSelectedMovie);
-              }}
+        <Row className="justify-content-md-center">
+          <Col md={10}>
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
             />
-          );
-        })}
+          </Col>
+        </Row>
+        <hr className="my-3" />
+        <h2>Similar Movies</h2>
+        <Row>
+          {similarMovies.map((movie) => {
+            return (
+              <Col md={3} lg={4} key={movie.id}>
+                <MovieCard
+                  key={movie.id}
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+            );
+          })}
+        </Row>
       </>
     );
   }
 
-  //if array is empty
   if (movies.length === 0) {
     return (
-      <div>
-        The list is empty.
-        <hr />
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}>
-          Log-out
-        </button>
-      </div>
+      <Row>
+        <Col md={8}>
+          The list is empty.
+          <hr />
+          <Button
+            onClick={() => {
+              setUser(null);
+              setToken(null);
+              localStorage.clear();
+            }}>
+            Log-out
+          </Button>
+        </Col>
+      </Row>
     );
   }
 
   return (
-    <div>
-      {movies.map((movie) => {
-        return (
+    <Row className="justify-content-md-center">
+      {movies.map((movie) => (
+        <Col md={6} lg={4} key={movie.id}>
           <MovieCard
-            key={movie.id}
             movie={movie}
             onMovieClick={(newSelectedMovie) => {
               setSelectedMovie(newSelectedMovie);
             }}
           />
-      )})}
-      <button
+        </Col>
+      ))}
+      <hr className="my-3" />
+      <Button
+        className="my-5 w-25"
+        md={1}
         onClick={() => {
           setUser(null);
           setToken(null);
           localStorage.clear();
         }}>
         Logout
-      </button>
-    </div>
+      </Button>
+    </Row>
   );
 };
-
