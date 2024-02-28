@@ -68,30 +68,33 @@ export const MainView = () => {
       );
     });
     return (
-      <Row className="justify-content-md-center">
-        <Col md={10}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
-          />
-        </Col>
+      <>
+        <Row className="justify-content-md-center">
+          <Col md={10}>
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+          </Col>
+        </Row>
         <hr className="my-3" />
-        <Col md={3}>
-          <h2>Similar Movies</h2>
+        <h2>Similar Movies</h2>
+        <Row>
           {similarMovies.map((movie) => {
             return (
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-               
-              />
+              <Col md={3} lg={4} key={movie.id}>
+                <MovieCard
+                  key={movie.id}
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
             );
           })}
-        </Col>
-      </Row>
+        </Row>
+      </>
     );
   }
 
@@ -128,8 +131,8 @@ export const MainView = () => {
       ))}
       <hr className="my-3" />
       <Button
-        className="my-5 w-25" 
-        md={1} 
+        className="my-5 w-25"
+        md={1}
         onClick={() => {
           setUser(null);
           setToken(null);
