@@ -1,6 +1,8 @@
 import propTypes from "prop-types";
-import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom"; //no matter what line 3 comes back error in parcel build, even when changing the line
+
 
 export const MovieCard = ({ movie }) => {
   return (

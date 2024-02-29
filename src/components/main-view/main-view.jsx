@@ -6,7 +6,7 @@ import { SignUpView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { BrowserRouter, Routes, Route, Navigation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -103,6 +103,16 @@ export const MainView = () => {
                     {movies.map((movie) => {
                       <Col className="mb-4" key={movie.id} md={3}>
                         <MovieCard movie={movie} />
+                        {/* <Button
+                          className="my-5 w-25"
+                          md={1}
+                          onClick={() => {
+                            setUser(null);
+                            setToken(null);
+                            localStorage.clear();
+                          }}>
+                          Logout
+                        </Button> */}
                       </Col>;
                     })}
                   </>
