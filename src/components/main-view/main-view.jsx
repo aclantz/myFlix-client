@@ -6,12 +6,10 @@ import { SignUpView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
   const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -63,9 +61,9 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <col md={5}>
+                    <Col md={5}>
                       <SignUpView />
-                    </col>
+                    </Col>
                   )}
                 </>
               }
@@ -110,11 +108,11 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => {
+                      {movies.map((movie) => (
                         <Col className="mb-4" key={movie.id} md={3}>
                           <MovieCard movie={movie} />
-                        </Col>;
-                      })}
+                        </Col>
+                      ))}
                     </>
                   )}
                 </>

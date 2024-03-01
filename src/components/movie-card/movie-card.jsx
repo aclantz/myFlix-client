@@ -6,13 +6,13 @@ import { Link } from "react-router-dom"; //no matter what line 3 comes back erro
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Card onClick={() => onMovieClick(movie)} className="my-3 bg-secondary">
+    <Card className="my-3 bg-secondary">
       <Card.Img variant="top" src={movie.image} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link">Open</Button>
+          <Button variant="Dark">Open</Button>
         </Link>
       </Card.Body>
     </Card>
@@ -29,3 +29,5 @@ MovieCard.propTypes = {
     image: propTypes.string,
   }).isRequired
 };
+
+// onClick={() => onMovieClick(movie)}

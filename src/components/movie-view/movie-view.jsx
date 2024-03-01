@@ -51,7 +51,7 @@ export const MovieView = ({ movies }) => {
           </div>
           <br />
           <Link to="/">
-            <Button onClick={onBackClick}>Back</Button>
+            <Button variant="Primary">Back</Button>
           </Link>
         </Col>
       </Row>
