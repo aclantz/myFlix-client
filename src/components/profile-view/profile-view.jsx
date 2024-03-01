@@ -1,17 +1,18 @@
 import Card from "react-bootstrap/Card";
+import propTypes from "prop-types";
 import { useEffect } from "react";
 
 
-export const ProfileView = ({ user }) => {
-
-
+export const ProfileView = ({ user, movies }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  useEffect() => {
-
+  let favMovies = movies.filter(movies.id === user.favoriteMovies.id);
+ 
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const data = {
       username: username,
       password: password,
@@ -19,7 +20,8 @@ export const ProfileView = ({ user }) => {
       birthday: birthday,
     };
 
-    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/:username", {
+    //to update a user
+    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/{user.username}", {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -36,19 +38,33 @@ export const ProfileView = ({ user }) => {
     });
   };
 
+ 
+  
   return (
     <>
-    <Card>
+    <Card bg="secondary" className="my-3">
       <Card.Body>
         <Card.Title>Your Information</Card.Title>
         <Card.Text>
-          
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>Birthday: {user.birthday}</p>
         </Card.Text>
       </Card.Body>
     </Card>
-    <Card>
+    <h4>Your Favorite Movies</h4>
+    {favMovies.map((movie) => {
+       <Col md={3} lg={4} key={movie.id}>
+          <MovieCard
+            movie={movie}
+          />
+        </Col>
+    })
+    }
+    <hr />
+    <Card bg="secondary" className="my-3">
       <Card.Body>
-        <Card.Title>Sign Up</Card.Title>
+        <Card.Title>Update Information</Card.Title>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
@@ -98,4 +114,20 @@ export const ProfileView = ({ user }) => {
     </Card>
     </>
   )
+}
+
+//didn't add password, check date?
+ProfileView.propTypes = {
+  user: propTypes.shape({
+    username: propTypes.string.isRequired,
+    email: propTypes.string,
+    birthday: propTypes.date
+  }).isRequired,
+  movies: propTypes.shape({
+    title: propTypes.string.isRequired,
+    director: propTypes.shape({
+      Name: propTypes.string
+    }),
+    image: propTypes.string,
+  }).isRequired
 }
