@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"; //no matter what line 3 comes back erro
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Card className="my-3 bg-secondary">
+    <Card className="my-3" bg="secondary" border="Light">
       <Card.Img variant="top" src={movie.image} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>

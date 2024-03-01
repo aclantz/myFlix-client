@@ -27662,7 +27662,9 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _reactRouterDom = require("react-router-dom"); //no matter what line 3 comes back error in parcel build, even when changing the line
 const MovieCard = ({ movie })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
-        className: "my-3 bg-secondary",
+        className: "my-3",
+        bg: "secondary",
+        border: "Light",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
                 variant: "top",
