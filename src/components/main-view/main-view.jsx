@@ -44,7 +44,7 @@ export const MainView = () => {
   return (
     <>
       <NavigationBar
-        user="user"
+        user={user}
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
