@@ -8,6 +8,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useParams } from "react-router";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -16,6 +17,8 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
+
+  const { movieId } = useParams();
 
   //Return Movies Array
   useEffect(() => {
@@ -45,7 +48,7 @@ export const MainView = () => {
 
   const addFavMovie = (movie) => {
     fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`,
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movieId}`,
       {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
@@ -71,7 +74,7 @@ export const MainView = () => {
 
   const removeFavMovie = (movie) => {
     fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`,
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movieId}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
@@ -165,7 +168,11 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView 
+                    movies={movies} 
+                    addFavMovie={addFavMovie}
+                    removeFavMovie={removeFavMovie}
+                    />
                   </Col>
                 )}
               </>
