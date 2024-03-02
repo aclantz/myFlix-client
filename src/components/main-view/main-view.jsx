@@ -4,22 +4,27 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignUpView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+
   const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
 
+  let favMovies = movies.filter(m => user.favoriteMovies.includes(m._id));
+
+
+  //Return Movies Array
   useEffect(() => {
     if (!token) {
       return;
     }
-
     fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -40,6 +45,47 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, [token]);
+
+  const addFavMovie = (movie) => {
+    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`, {
+      method: "PUT",
+      headers: { Authentication: `Bearer ${token}`},
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("failed to add to favMovies");
+      }
+    }).then((user) => {
+      if(user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+      }
+    }).catch(error => {
+      console.log(error)
+    }) 
+  };
+
+  const removeFavMovie = (movie) => {
+    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`, {
+      method: "DELETE",
+      headers: { Authentication: `Bearer ${token}`},
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("failed to add to favMovies");
+      }
+    }).then((user) => {
+      if(user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+      }
+    }).catch(error => {
+      console.log(error)
+    }) 
+  }
+
 
   return (
     <BrowserRouter>
@@ -76,6 +122,25 @@ export const MainView = () => {
                 ) : (
                   <Col md={5}>
                     <LoginView onLoggedIn={(user) => setUser(user)} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={5}>
+                    <ProfileView
+                      user={user}
+                      token={token}
+                      setUser={setUser}
+                      favMovies={favMovies}
+                    />
                   </Col>
                 )}
               </>

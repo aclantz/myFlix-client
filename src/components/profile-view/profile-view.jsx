@@ -1,31 +1,30 @@
 import Card from "react-bootstrap/Card";
 import propTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
-export const ProfileView = ({ user, movies }) => {
+export const ProfileView = ({ user, setUser, token, favMovies }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  let favMovies = movies.filter(movies.id === user.favoriteMovies.id);
  
+
+  //update user, is password needed for endpoint?
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
       username: username,
-      password: password,
       email: email,
       birthday: birthday,
     };
-
-    //to update a user
-    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/{user.username}", {
+    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
     }).then((response) => {
       if (response.ok) {
@@ -35,9 +34,37 @@ export const ProfileView = ({ user, movies }) => {
         console.log("Error response:", response.status, response.statusText);
         alert("update failed");
       }
-    });
+    }).then((user) => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        setUser(user);
+      }
+    }).catch(error => {
+      console.log(error);
+    })
+    
   };
 
+  //delete user
+  const handleDelete = (event) => {
+    event.preventDefault();
+    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+            },
+    }).then((response) => {
+      if (response.ok) {
+        alert("User successfully deleted");
+
+        window.location.reload();
+      } else {
+        console.log("Error response:", response.status, response.statusText);
+        alert("something went wrong");
+      }
+    });
+  }
  
   
   return (
