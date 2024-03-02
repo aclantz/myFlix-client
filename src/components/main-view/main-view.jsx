@@ -18,7 +18,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
 
-  const { movieId } = useParams();
+  // const { movieId } = useParams();
 
   //Return Movies Array
   useEffect(() => {
@@ -46,9 +46,10 @@ export const MainView = () => {
       });
   }, [token]);
 
+  //useParams for movie Id?
   const addFavMovie = (movie) => {
     fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movieId}`,
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movie.id}`,
       {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
@@ -74,7 +75,7 @@ export const MainView = () => {
 
   const removeFavMovie = (movie) => {
     fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movieId}`,
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movie.id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },

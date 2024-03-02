@@ -48,23 +48,26 @@ export const MovieView = ({ movies, addFavMovie, removeFavMovie }) => {
           <Button onClick={addFavMovie}>Favorite</Button>
         </Col>
       </Row>
+      <Row>
+        Similar Movies
+      </Row>
     </div>
   );
 };
 
-MovieView.propTypes = {
-  movie: propTypes.shape({
-    imagePath: propTypes.string,
-    title: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    genre: propTypes.shape({
-      Name: propTypes.string.isRequired,
-      Description: propTypes.string,
-    }),
-    director: propTypes.shape({
-      Name: propTypes.string.isRequired,
-      Bio: propTypes.string,
-    }),
-  })
-
-};
+// MovieView.propTypes = {
+//   movie: propTypes.shape({
+//     imagePath: propTypes.string,
+//     title: propTypes.string.isRequired,
+//     description: propTypes.string.isRequired,
+//     genre: propTypes.shape({
+//       Name: propTypes.string.isRequired,
+//       Description: propTypes.string,
+//     }),
+//     director: propTypes.shape({
+//       Name: propTypes.string.isRequired,
+//       Bio: propTypes.string,
+//     }),
+//   })
+// 
+// };
