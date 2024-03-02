@@ -17,9 +17,6 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
 
-  let favMovies = movies.filter(m => user.favoriteMovies.includes(m._id));
-
-
   //Return Movies Array
   useEffect(() => {
     if (!token) {
@@ -47,45 +44,56 @@ export const MainView = () => {
   }, [token]);
 
   const addFavMovie = (movie) => {
-    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`, {
-      method: "PUT",
-      headers: { Authentication: `Bearer ${token}`},
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("failed to add to favMovies");
+    fetch(
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`,
+      {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
       }
-    }).then((user) => {
-      if(user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        setUser(user);
-      }
-    }).catch(error => {
-      console.log(error)
-    }) 
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("failed to add to favMovies");
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const removeFavMovie = (movie) => {
-    fetch(`https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`, {
-      method: "DELETE",
-      headers: { Authentication: `Bearer ${token}`},
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("failed to add to favMovies");
+    fetch(
+      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies/${movie.id}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
       }
-    }).then((user) => {
-      if(user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        setUser(user);
-      }
-    }).catch(error => {
-      console.log(error)
-    }) 
-  }
-
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("failed to add to favMovies");
+        }
+      })
+      .then((user) => {
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <BrowserRouter>
@@ -94,7 +102,8 @@ export const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
-          storageClear();
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
         }}
       />
       <Row className="justify-content-md-center">
@@ -139,7 +148,7 @@ export const MainView = () => {
                       user={user}
                       token={token}
                       setUser={setUser}
-                      favMovies={favMovies}
+                      movies={movies}
                     />
                   </Col>
                 )}
