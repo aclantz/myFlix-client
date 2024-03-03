@@ -46,58 +46,7 @@ export const MainView = () => {
       });
   }, [token]);
 
-  //useParams for movie Id?
-  const addFavMovie = (movie) => {
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movie.id}`,
-      {
-        method: "PUT",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("failed to add to favMovies");
-        }
-      })
-      .then((user) => {
-        if (user) {
-          localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const removeFavMovie = (movie) => {
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movie.id}`,
-      {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("failed to add to favMovies");
-        }
-      })
-      .then((user) => {
-        if (user) {
-          localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  
 
   return (
     <BrowserRouter>
@@ -178,8 +127,8 @@ export const MainView = () => {
                     <MovieView
                       movies={movies}
                       user={user}
-                      addFavMovie={addFavMovie}
-                      removeFavMovie={removeFavMovie}
+                      setUser={setUser}
+                      token={token}
                     />
                   </Col>
                 )}
