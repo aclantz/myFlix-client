@@ -8,7 +8,7 @@ export const MovieView = ({ movies, user, addFavMovie, removeFavMovie }) => {
   const movie = movies.find((m) => m.id === movieId);
 
  let handleToggle = (movie) => {
-  if (user.favoritemovies._id.includes(movie)) {
+  if (user.favoritemovies.includes(movie.id)) {
     removeFavMovie(movie);
   } else {
     addFavMovie(movie);

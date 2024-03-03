@@ -106,8 +106,8 @@ export const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
-          localStorage.removeItem('user');
-          localStorage.removeItem('token');
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
         }}
       />
       <Row className="justify-content-md-center">
@@ -134,7 +134,12 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
                   </Col>
                 )}
               </>
@@ -170,11 +175,11 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView 
-                    movies={movies} 
-                    user={user}
-                    addFavMovie={addFavMovie}
-                    removeFavMovie={removeFavMovie}
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      addFavMovie={addFavMovie}
+                      removeFavMovie={removeFavMovie}
                     />
                   </Col>
                 )}

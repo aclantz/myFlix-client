@@ -1,8 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import propTypes from "prop-types";
 import { useState } from "react";
+import { MovieCard } from "../movie-card/movie-card";
 
 export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
   const [username, setUsername] = useState("");
@@ -10,7 +13,7 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  const favMovies = movies.filter((m) => user.favoritemovies.includes(m._id));
+  const favMovies = movies.filter((m) => user.favoritemovies.includes(m.id));
 
   //update user, is password needed for endpoint?
   const handleSubmit = (event) => {
@@ -92,12 +95,16 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
         </Card.Body>
       </Card>
       <hr />
+      <Row>
       <h4>Your Favorite Movies</h4>
       {favMovies.map((movie) => {
-        <Col md={3} lg={4} key={movie.id}>
+        return (
+        <Col className="mb-4" key={movie.id} md={3}>
           <MovieCard movie={movie} />
-        </Col>;
+        </Col>
+        );
       })}
+      </Row>
       <hr />
       <Card bg="secondary" className="my-3">
         <Card.Body>
@@ -190,7 +197,7 @@ ProfileView.propTypes = {
     username: propTypes.string.isRequired,
     password: propTypes.string,
     email: propTypes.string,
-    birthday: propTypes.date,
+    birthday: propTypes.string,
   }).isRequired,
   movies: propTypes.shape({
     title: propTypes.string.isRequired,
