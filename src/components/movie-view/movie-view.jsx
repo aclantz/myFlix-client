@@ -1,12 +1,19 @@
 import propTypes from "prop-types";
-import { Button, Row, Col, Card } from "react-bootstrap";
+import { Button, ToggleButton, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-export const MovieView = ({ movies, addFavMovie, removeFavMovie }) => {
+export const MovieView = ({ movies, user, addFavMovie, removeFavMovie }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
 
+ let handleToggle = (movie) => {
+  if (user.favoritemovies._id.includes(movie)) {
+    removeFavMovie(movie);
+  } else {
+    addFavMovie(movie);
+  }
+ };
 
   return (
     <div>
@@ -45,7 +52,7 @@ export const MovieView = ({ movies, addFavMovie, removeFavMovie }) => {
           <Link to="/">
             <Button variant="Primary" className="my-5">Back</Button>
           </Link>
-          <Button onClick={addFavMovie}>Favorite</Button>
+          <ToggleButton onClick={handleToggle} className="">Favorite</ToggleButton>
         </Col>
       </Row>
       <Row>
@@ -55,19 +62,39 @@ export const MovieView = ({ movies, addFavMovie, removeFavMovie }) => {
   );
 };
 
-// MovieView.propTypes = {
-//   movie: propTypes.shape({
-//     imagePath: propTypes.string,
-//     title: propTypes.string.isRequired,
-//     description: propTypes.string.isRequired,
-//     genre: propTypes.shape({
-//       Name: propTypes.string.isRequired,
-//       Description: propTypes.string,
-//     }),
-//     director: propTypes.shape({
-//       Name: propTypes.string.isRequired,
-//       Bio: propTypes.string,
-//     }),
-//   })
-// 
-// };
+MovieView.propTypes = {
+  movie: propTypes.shape({
+    imagePath: propTypes.string,
+    title: propTypes.string.isRequired,
+    description: propTypes.string.isRequired,
+    genre: propTypes.shape({
+      Name: propTypes.string.isRequired,
+      Description: propTypes.string,
+    }),
+    director: propTypes.shape({
+      Name: propTypes.string.isRequired,
+      Bio: propTypes.string,
+    }),
+    user: propTypes.shape({
+      favoritemovies: propTypes.array
+    }),
+    addFavMovie: propTypes.func.isRequired,
+    removeFavMovie: propTypes.func.isRequired
+  })
+
+};
+
+
+//playing with button ideas
+ // const [ btnState, setBtnState ] = useState(false);
+  // function handleToggle() { setBtnState(btnState => !btnState); };
+
+  // let favMovieToggle = btnState ? ((movieID) => {
+  //   addFavMovie(movieID)) : (
+  //     if (UserActivation.favoritemovies.id === movieID) {
+  //       removeFavMovie(movieID)
+  //     } else (
+  //       return;
+  //     )
+  //   )
+  // })

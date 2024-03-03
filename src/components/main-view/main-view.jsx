@@ -152,6 +152,7 @@ export const MainView = () => {
                       user={user}
                       token={token}
                       setUser={setUser}
+                      setToken={setToken}
                       movies={movies}
                     />
                   </Col>
@@ -171,6 +172,7 @@ export const MainView = () => {
                   <Col md={8}>
                     <MovieView 
                     movies={movies} 
+                    user={user}
                     addFavMovie={addFavMovie}
                     removeFavMovie={removeFavMovie}
                     />

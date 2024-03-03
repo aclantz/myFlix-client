@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import propTypes from "prop-types";
 import { useState } from "react";
 
-export const ProfileView = ({ user, setUser, token, movies }) => {
+export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +17,7 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
     event.preventDefault();
     const data = {
       username: username,
+      password: password,
       email: email,
       birthday: birthday,
     };
@@ -183,18 +184,22 @@ export const ProfileView = ({ user, setUser, token, movies }) => {
   );
 };
 
-//didn't add password, check date?
-// ProfileView.propTypes = {
-//   user: propTypes.shape({
-//     username: propTypes.string.isRequired,
-//     email: propTypes.string,
-//     birthday: propTypes.date,
-//   }).isRequired,
-//   movies: propTypes.shape({
-//     title: propTypes.string.isRequired,
-//     director: propTypes.shape({
-//       Name: propTypes.string,
-//     }),
-//     image: propTypes.string,
-//   }).isRequired,
-// };
+
+ProfileView.propTypes = {
+  user: propTypes.shape({
+    username: propTypes.string.isRequired,
+    password: propTypes.string,
+    email: propTypes.string,
+    birthday: propTypes.date,
+  }).isRequired,
+  movies: propTypes.shape({
+    title: propTypes.string.isRequired,
+    director: propTypes.shape({
+      Name: propTypes.string,
+    }),
+    image: propTypes.string,
+  }).isRequired,
+  token: propTypes.string.isRequired,
+  setUser: propTypes.func,
+  setToken: propTypes.func,
+};
