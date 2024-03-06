@@ -7,6 +7,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useParams } from "react-router";
 
@@ -59,6 +60,7 @@ export const MainView = () => {
           localStorage.removeItem("token");
         }}
       />
+      <Container>
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -157,6 +159,7 @@ export const MainView = () => {
           />
         </Routes>
       </Row>
+      </Container>
     </BrowserRouter>
   );
 };

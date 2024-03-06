@@ -6,9 +6,9 @@ import Container from "react-bootstrap/Container";
 // Main component
 const MyFlixApplication = () => {
   return (
-  <Container>
+
     <MainView />
-  </Container>
+
   )
 };
 
