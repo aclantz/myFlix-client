@@ -3,6 +3,8 @@ import { Button, ToggleButton, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
+import { useState } from "react";
+// import "./movie-view.scss";
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
@@ -73,9 +75,11 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     if (user.favoritemovies.includes(movieId)) {
       removeFavMovie(movie);
       alert("Movie Removed");
+      console.log("Movie Removed");
     } else {
       addFavMovie(movie);
       alert("Movie Added");
+      console.log("Movie Added");
     }
   };
 
@@ -118,9 +122,9 @@ export const MovieView = ({ movies, user, setUser, token }) => {
               Back
             </Button>
           </Link>
-          <ToggleButton onClick={handleToggle} className="">
+          <Button onClick={handleToggle} >
             Favorite
-          </ToggleButton>
+          </Button>
         </Col>
       </Row>
       <Row>
@@ -155,16 +159,16 @@ MovieView.propTypes = {
   }),
 };
 
-//playing with button ideas
-// const [ btnState, setBtnState ] = useState(false);
-// function handleToggle() { setBtnState(btnState => !btnState); };
+// const [isFav, setIsFav] = useState(false);
 
-// let favMovieToggle = btnState ? ((movieID) => {
-//   addFavMovie(movieID)) : (
-//     if (UserActivation.favoritemovies.id === movieID) {
-//       removeFavMovie(movieID)
-//     } else (
-//       return;
-//     )
-//   )
-// })
+// let favButton = () => {
+//   if (user.favoritemovies.includes(movieId)) {
+//     return setIsFav(true);
+//   } else {
+//     return setIsFav(false);
+// }
+// };
+// favButton();
+
+// <button className={`fav-button ${isFav ? 'fav' : ''}`}></button>
+

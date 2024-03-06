@@ -198,13 +198,7 @@ ProfileView.propTypes = {
     email: propTypes.string,
     birthday: propTypes.string,
   }).isRequired,
-  movies: propTypes.shape({
-    title: propTypes.string.isRequired,
-    director: propTypes.shape({
-      Name: propTypes.string,
-    }),
-    image: propTypes.string,
-  }).isRequired,
+  movies: propTypes.array.isRequired,
   token: propTypes.string.isRequired,
   setUser: propTypes.func,
   setToken: propTypes.func,

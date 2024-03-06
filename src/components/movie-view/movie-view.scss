@@ -1,0 +1,25 @@
+$body-bg: black;
+$body-color: white;
+$primary: #cf4e3a;
+$secondary: #222222;
+
+
+img {
+  width: 100%;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.fav-button {
+  background-color: $secondary;
+  color: white;
+}
+
+.fav-button.fav {
+  background-color: $primary;
+  color: black;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
