@@ -96,14 +96,14 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
       </Card>
       <hr />
       <Row>
-      <h4>Your Favorite Movies</h4>
-      {favMovies.map((movie) => {
-        return (
-        <Col className="mb-4" key={movie.id} md={3}>
-          <MovieCard movie={movie} />
-        </Col>
-        );
-      })}
+        <h4>Your Favorite Movies</h4>
+        {favMovies.map((movie) => {
+          return (
+            <Col className="mb-4" key={movie.id} md={3}>
+              <MovieCard movie={movie} />
+            </Col>
+          );
+        })}
       </Row>
       <hr />
       <Card bg="secondary" className="my-3">
@@ -190,7 +190,6 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
     </>
   );
 };
-
 
 ProfileView.propTypes = {
   user: propTypes.shape({
