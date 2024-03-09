@@ -59,6 +59,7 @@ export const MainView = () => {
           localStorage.removeItem("user");
           localStorage.removeItem("token");
         }}
+        movies={movies}
       />
       <Container>
       <Row className="justify-content-md-center">
