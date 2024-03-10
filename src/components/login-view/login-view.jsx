@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import propTypes from "prop-types";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -39,7 +40,7 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Card className="card">
+    <Card>
       <Card.Body>
         <Card.Title>Login</Card.Title>
         <Form onSubmit={handleSubmit}>
@@ -71,3 +72,7 @@ export const LoginView = ({ onLoggedIn }) => {
     </Card>
   );
 };
+
+LoginView.propTypes = {
+  onLoggedIn: propTypes.func.isRequired
+}

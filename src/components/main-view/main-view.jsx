@@ -9,17 +9,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useParams } from "react-router";
+
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-
   const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
-
-  // const { movieId } = useParams();
 
   //Return Movies Array
   useEffect(() => {
@@ -59,6 +56,7 @@ export const MainView = () => {
           localStorage.removeItem("user");
           localStorage.removeItem("token");
         }}
+        movies={movies}
       />
       <Container>
       <Row className="justify-content-md-center">
@@ -163,106 +161,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-//old code for reference
-// if (!user) {
-//   console.log("User:", user);
-//   console.log("Token:", token);
-//   return (
-//     <Row className="justify-content-md-center">
-//       <Col md={5}>
-//         <LoginView
-//           onLoggedIn={(user, token) => {
-//             setUser(user);
-//             setToken(token);
-//           }}
-//         />
-//         <br />
-//         <SignUpView />
-//       </Col>
-//     </Row>
-//   );
-// }
-
-// if (selectedMovie) {
-//   let similarMovies = movies.filter((movie) => {
-//     return (
-//       selectedMovie.genre.Name === movie.genre.Name &&
-//       selectedMovie.id !== movie.id
-//     );
-//   });
-//   return (
-//     <>
-//       <Row className="justify-content-md-center">
-//         <Col md={10}>
-//           <MovieView
-//             movie={selectedMovie}
-//             onBackClick={() => setSelectedMovie(null)}
-//           />
-//         </Col>
-//       </Row>
-//       <hr className="my-3" />
-//       <h2>Similar Movies</h2>
-//       <Row>
-//         {similarMovies.map((movie) => {
-//           return (
-//             <Col md={3} lg={4} key={movie.id}>
-//               <MovieCard
-//                 key={movie.id}
-//                 movie={movie}
-//                 onMovieClick={(newSelectedMovie) => {
-//                   setSelectedMovie(newSelectedMovie);
-//                 }}
-//               />
-//             </Col>
-//           );
-//         })}
-//       </Row>
-//     </>
-//   );
-// }
-
-// if (movies.length === 0) {
-//   return (
-//     <Row>
-//       <Col md={8}>
-//         The list is empty.
-//         <hr />
-//         <Button
-//           onClick={() => {
-//             setUser(null);
-//             setToken(null);
-//             localStorage.clear();
-//           }}>
-//           Log-out
-//         </Button>
-//       </Col>
-//     </Row>
-//   );
-// }
-
-// return (
-//   <Row className="justify-content-md-center">
-//     {movies.map((movie) => (
-//       <Col md={6} lg={4} key={movie.id}>
-//         <MovieCard
-//           movie={movie}
-//           onMovieClick={(newSelectedMovie) => {
-//             setSelectedMovie(newSelectedMovie);
-//           }}
-//         />
-//       </Col>
-//     ))}
-//     <hr className="my-3" />
-//     <Button
-//       className="my-5 w-25"
-//       md={1}
-//       onClick={() => {
-//         setUser(null);
-//         setToken(null);
-//         localStorage.clear();
-//       }}>
-//       Logout
-//     </Button>
-//   </Row>
-// );
-// };

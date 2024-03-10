@@ -15,7 +15,7 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
 
   const favMovies = movies.filter((m) => user.favoritemovies.includes(m.id));
 
-  //update user, is password needed for endpoint?
+  //update user
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
@@ -88,9 +88,9 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
         <Card.Body>
           <Card.Title>Your Information</Card.Title>
           <Card.Text>
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
-            <p>Birthday: {user.birthday}</p>
+            <span>Username: {user.username}</span><br />
+            <span>Email: {user.email}</span><br />
+            <span>Birthday: {user.birthday}</span><br />
           </Card.Text>
         </Card.Body>
       </Card>

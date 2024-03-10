@@ -1,3 +1,5 @@
+//not being used, someday would like to add styling to favorite button.
+
 $body-bg: black;
 $body-color: white;
 $primary: #cf4e3a;
@@ -12,14 +14,15 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
-.fav-button {
+.favorite-false {
   background-color: $secondary;
   color: white;
 }
 
-.fav-button.fav {
+.favorite-true {
   background-color: $primary;
   color: black;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';
+
