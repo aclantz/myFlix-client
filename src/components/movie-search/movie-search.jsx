@@ -4,11 +4,13 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 export const MovieSearch = ({ movies }) => {
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleInput =(e) => {
     setQuery(e.target.value);
+    setError(""); //clear error message when user types
   };
 
   const handleSearch = ( e, movie ) => {
@@ -21,14 +23,13 @@ export const MovieSearch = ({ movies }) => {
       
     } else {
       console.log("Error no match,", typeof query, query)
-      // return (
-      //   searchForm.setAttribute(placeholder, "No match found")
-      // )
+      setError("No match found");
     }
   };
 
   return (
     <Nav>
+      {error && <p><small>{error}</small></p>}
       <Form className="d-flex" onSubmit={handleSearch}>
         <Form.Control 
           type="search"
@@ -37,6 +38,7 @@ export const MovieSearch = ({ movies }) => {
         />
         <Button type="submit">Search</Button>
       </Form>
+      
     </Nav>
   );
 };

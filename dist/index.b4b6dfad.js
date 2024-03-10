@@ -42030,6 +42030,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieSearch = require("../movie-search/movie-search");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 const NavigationBar = ({ user, onLoggedOut, movies })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
         expand: "lg",
@@ -42040,6 +42042,7 @@ const NavigationBar = ({ user, onLoggedOut, movies })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
                 as: (0, _reactRouterDom.Link),
                 to: "/",
+                className: "",
                 children: "myFlix"
             }, void 0, false, {
                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
@@ -42138,6 +42141,11 @@ const NavigationBar = ({ user, onLoggedOut, movies })=>{
     }, undefined);
 };
 _c = NavigationBar;
+NavigationBar.propTypes = {
+    user: (0, _propTypesDefault.default).object.isRequired,
+    onLoggedOut: (0, _propTypesDefault.default).func.isRequired,
+    movies: (0, _propTypesDefault.default).array.isRequired
+};
 var _c;
 $RefreshReg$(_c, "NavigationBar");
 
@@ -42146,7 +42154,7 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-search/movie-search":"70asd"}],"70asd":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../movie-search/movie-search":"70asd","prop-types":"7wKI2"}],"70asd":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$020e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42164,9 +42172,11 @@ var _s = $RefreshSig$();
 const MovieSearch = ({ movies })=>{
     _s();
     const [query, setQuery] = (0, _react.useState)("");
+    const [error, setError] = (0, _react.useState)("");
     const navigate = (0, _reactRouterDom.useNavigate)();
     const handleInput = (e)=>{
         setQuery(e.target.value);
+        setError(""); //clear error message when user types
     };
     const handleSearch = (e, movie)=>{
         e.preventDefault();
@@ -42174,43 +42184,61 @@ const MovieSearch = ({ movies })=>{
         if (movieQuery.length > 0) {
             console.log("True, ", query, movieQuery[0].id);
             navigate(`/movies/${encodeURIComponent(movieQuery[0].id)}`);
-        } else console.log("Error no match,", typeof query, query);
+        } else {
+            console.log("Error no match,", typeof query, query);
+            setError("No match found");
+        }
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-            className: "d-flex",
-            onSubmit: handleSearch,
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                    type: "search",
-                    className: "me-2 search-form",
-                    onChange: handleInput
+        children: [
+            error && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("small", {
+                    children: error
                 }, void 0, false, {
                     fileName: "src/components/movie-search/movie-search.jsx",
-                    lineNumber: 33,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                    type: "submit",
-                    children: "Search"
-                }, void 0, false, {
-                    fileName: "src/components/movie-search/movie-search.jsx",
-                    lineNumber: 38,
-                    columnNumber: 9
+                    lineNumber: 32,
+                    columnNumber: 20
                 }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/movie-search/movie-search.jsx",
-            lineNumber: 32,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false, {
+            }, void 0, false, {
+                fileName: "src/components/movie-search/movie-search.jsx",
+                lineNumber: 32,
+                columnNumber: 17
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                className: "d-flex",
+                onSubmit: handleSearch,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                        type: "search",
+                        className: "me-2 search-form",
+                        onChange: handleInput
+                    }, void 0, false, {
+                        fileName: "src/components/movie-search/movie-search.jsx",
+                        lineNumber: 34,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                        type: "submit",
+                        children: "Search"
+                    }, void 0, false, {
+                        fileName: "src/components/movie-search/movie-search.jsx",
+                        lineNumber: 39,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-search/movie-search.jsx",
+                lineNumber: 33,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
         fileName: "src/components/movie-search/movie-search.jsx",
         lineNumber: 31,
         columnNumber: 5
     }, undefined);
 };
-_s(MovieSearch, "Q4zAXvsLMdyMzlmcv0WSGG2XAdU=", false, function() {
+_s(MovieSearch, "SDOnvFZVTlI8Lwb53R2Nw+3+f9g=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];

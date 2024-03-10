@@ -1,14 +1,14 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieSearch } from "../movie-search/movie-search";
+import propTypes from "prop-types";
 
 
 export const NavigationBar = ({ user, onLoggedOut, movies }) => {
-  
 
   return (
     <Navbar expand="lg" bg="secondary" data-bs-theme="dark" className="nav-bar">
-    <Navbar.Brand as={Link} to="/">
+    <Navbar.Brand as={Link} to="/" className="">
       myFlix
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -44,4 +44,10 @@ export const NavigationBar = ({ user, onLoggedOut, movies }) => {
     </Navbar.Collapse>
   </Navbar>
   );
+};
+
+NavigationBar.propTypes = {
+  user: propTypes.object.isRequired,
+  onLoggedOut: propTypes.func.isRequired,
+  movies: propTypes.array.isRequired
 };
