@@ -42165,14 +42165,16 @@ const MovieSearch = ({ movies })=>{
     _s();
     const [query, setQuery] = (0, _react.useState)("");
     const navigate = (0, _reactRouterDom.useNavigate)();
-    // const handleInput =(e) => {
-    //   setQuery(e.target.value);
-    // };
+    const handleInput = (e)=>{
+        setQuery(e.target.value);
+    };
     const handleSearch = (e, movie)=>{
         e.preventDefault();
         const movieQuery = movies.filter((movie)=>movie.title === query);
-        if (movieQuery.length > 0) console.log("True, ", query, movieQuery[0].id);
-        else console.log("Error, no match", query);
+        if (movieQuery.length > 0) {
+            console.log("True, ", query, movieQuery[0].id);
+            navigate(`/movies/${encodeURIComponent(movieQuery[0].id)}`);
+        } else console.log("Error no match,", typeof query, query);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -42182,7 +42184,7 @@ const MovieSearch = ({ movies })=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                     type: "search",
                     className: "me-2 search-form",
-                    onChange: setQuery
+                    onChange: handleInput
                 }, void 0, false, {
                     fileName: "src/components/movie-search/movie-search.jsx",
                     lineNumber: 33,
@@ -42208,7 +42210,7 @@ const MovieSearch = ({ movies })=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MovieSearch, "4dav8M2SLGXQnIi3dGQyN/4cmLs=", false, function() {
+_s(MovieSearch, "Q4zAXvsLMdyMzlmcv0WSGG2XAdU=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];
