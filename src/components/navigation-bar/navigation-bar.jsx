@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieSearch } from "../movie-search/movie-search";
 import propTypes from "prop-types";
@@ -8,7 +8,7 @@ export const NavigationBar = ({ user, onLoggedOut, movies }) => {
 
   return (
     <Navbar expand="lg" bg="secondary" data-bs-theme="dark" className="nav-bar">
-    <Navbar.Brand as={Link} to="/" className="">
+    <Navbar.Brand as={Link} to="/">
       myFlix
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

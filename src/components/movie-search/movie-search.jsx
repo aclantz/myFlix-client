@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Nav, Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
+import propTypes from "prop-types";
 
 
 export const MovieSearch = ({ movies }) => {
@@ -41,4 +42,8 @@ export const MovieSearch = ({ movies }) => {
       
     </Nav>
   );
+};
+
+MovieSearch.propTypes = {
+  movies: propTypes.array.isRequired
 };

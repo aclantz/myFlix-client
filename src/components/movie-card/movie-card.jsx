@@ -30,4 +30,3 @@ MovieCard.propTypes = {
   }).isRequired
 };
 
-// onClick={() => onMovieClick(movie)}
