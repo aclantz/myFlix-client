@@ -8,7 +8,7 @@ import { MovieCard } from "../movie-card/movie-card";
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-  
+
   const selectedMovie = movies.find((movie) => movie.id === movieId);
   const similarMovie = movies.filter((movie) => {
     return (
@@ -74,11 +74,9 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     if (user.favoritemovies.includes(movieId)) {
       removeFavMovie(movie);
       alert("Movie Removed");
-      console.log("Movie Removed");
     } else {
       addFavMovie(movie);
       alert("Movie Added");
-      console.log("Movie Added");
     }
   };
 
