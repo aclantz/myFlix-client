@@ -1,15 +1,14 @@
 import propTypes from "prop-types";
-import { Button, ToggleButton, Row, Col, Card } from "react-bootstrap";
+import { Button,  Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
-import { useState } from "react";
-// import "./movie-view.scss";
+
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-
+  
   const selectedMovie = movies.find((movie) => movie.id === movieId);
   const similarMovie = movies.filter((movie) => {
     return (
@@ -122,7 +121,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
               Back
             </Button>
           </Link>
-          <Button onClick={handleToggle} >
+          <Button onClick={handleToggle} className="" >
             Favorite
           </Button>
         </Col>
@@ -158,17 +157,3 @@ MovieView.propTypes = {
     token: propTypes.string,
   }),
 };
-
-// const [isFav, setIsFav] = useState(false);
-
-// let favButton = () => {
-//   if (user.favoritemovies.includes(movieId)) {
-//     return setIsFav(true);
-//   } else {
-//     return setIsFav(false);
-// }
-// };
-// favButton();
-
-// <button className={`fav-button ${isFav ? 'fav' : ''}`}></button>
-
