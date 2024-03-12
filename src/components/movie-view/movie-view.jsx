@@ -1,9 +1,10 @@
 import propTypes from "prop-types";
-import { Button,  Row, Col, Card } from "react-bootstrap";
+import { Button, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { MovieCard } from "../movie-card/movie-card";
 
+import { MovieCard } from "../movie-card/movie-card";
+import { apiURL } from "../config";
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
@@ -17,13 +18,10 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   });
 
   const addFavMovie = () => {
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movieId}`,
-      {
-        method: "PUT",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
+    fetch(apiURL + `/users/${user.username}/movies/${movieId}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -44,13 +42,10 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   };
 
   const removeFavMovie = () => {
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}/movies/${movieId}`,
-      {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
+    fetch(apiURL + `/users/${user.username}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -119,7 +114,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
               Back
             </Button>
           </Link>
-          <Button onClick={handleToggle} className="" >
+          <Button onClick={handleToggle} className="">
             Favorite
           </Button>
         </Col>

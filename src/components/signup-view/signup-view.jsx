@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
+import { apiURL } from "../config";
+
 export const SignUpView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@ export const SignUpView = () => {
       birthday: birthday,
     };
 
-    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/users", {
+    fetch(apiURL + "/users", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

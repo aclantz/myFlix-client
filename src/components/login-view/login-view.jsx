@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import propTypes from "prop-types";
 
+import { apiURL } from "../config";
+
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
       password: password,
     };
 
-    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/login", {
+    fetch(apiURL + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

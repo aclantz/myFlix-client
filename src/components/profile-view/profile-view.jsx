@@ -5,7 +5,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import propTypes from "prop-types";
 import { useState } from "react";
+
 import { MovieCard } from "../movie-card/movie-card";
+import { apiURL } from "../config";
 
 export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
   const [username, setUsername] = useState("");
@@ -24,17 +26,15 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
       email: email,
       birthday: birthday,
     };
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    
+    fetch(apiURL + `/users/${user.username}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (response.ok) {
           alert("update successful");
@@ -58,16 +58,13 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
   //delete user
   const handleDelete = (event) => {
     event.preventDefault();
-    fetch(
-      `https://movie-api-project24-2fb853d4fde0.herokuapp.com/users/${user.username}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    ).then((response) => {
+    fetch(apiURL + `/users/${user.username}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
       if (response.ok) {
         alert("User successfully deleted");
         setUser(null);
@@ -88,9 +85,12 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
         <Card.Body>
           <Card.Title>Your Information</Card.Title>
           <Card.Text>
-            <span>Username: {user.username}</span><br />
-            <span>Email: {user.email}</span><br />
-            <span>Birthday: {user.birthday}</span><br />
+            <span>Username: {user.username}</span>
+            <br />
+            <span>Email: {user.email}</span>
+            <br />
+            <span>Birthday: {user.birthday}</span>
+            <br />
           </Card.Text>
         </Card.Body>
       </Card>

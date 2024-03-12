@@ -5,6 +5,8 @@ import { LoginView } from "../login-view/login-view";
 import { SignUpView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
+import { apiURL } from "../config";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -23,7 +25,7 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-    fetch("https://movie-api-project24-2fb853d4fde0.herokuapp.com/movies", {
+    fetch(apiURL +  "/movies", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
