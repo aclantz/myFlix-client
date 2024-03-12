@@ -7,8 +7,8 @@ import propTypes from "prop-types";
 export const NavigationBar = ({ user, onLoggedOut, movies }) => {
 
   return (
-    <Navbar expand="lg" bg="secondary" data-bs-theme="dark" className="nav-bar">
-    <Navbar.Brand as={Link} to="/">
+    <Navbar expand="lg" bg="secondary" data-bs-theme="dark" className="nav-bar ">
+    <Navbar.Brand as={Link} to="/" className="mx-4">
       myFlix
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

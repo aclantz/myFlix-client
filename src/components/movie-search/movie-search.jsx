@@ -29,7 +29,7 @@ export const MovieSearch = ({ movies }) => {
   };
 
   return (
-    <Nav>
+    <Nav className="mx-4">
       {error && <p><small>{error}</small></p>}
       <Form className="d-flex" onSubmit={handleSearch}>
         <Form.Control 

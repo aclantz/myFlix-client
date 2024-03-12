@@ -114,8 +114,8 @@ export const MovieView = ({ movies, user, setUser, token }) => {
           </Card>
         </Col>
         <Col md={1}>
-          <Link to="/">
-            <Button variant="Primary" className="my-5">
+          <Link to="/" role="button">
+            <Button type="button" className="my-5">
               Back
             </Button>
           </Link>
