@@ -27452,7 +27452,8 @@ const MainView = ()=>{
                                         lineNumber: 104,
                                         columnNumber: 19
                                     }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                        md: 5,
+                                        md: 8,
+                                        sm: 10,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                             user: user,
                                             token: token,
@@ -42345,7 +42346,8 @@ const ProfileView = ({ user, setUser, token, setToken, movies })=>{
                     favMovies.map((movie)=>{
                         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                             className: "mb-4",
-                            md: 3,
+                            md: 4,
+                            sm: 6,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movie: movie
                             }, void 0, false, {

@@ -26,7 +26,7 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
       email: email,
       birthday: birthday,
     };
-    
+
     fetch(apiURL + `/users/${user.username}`, {
       method: "PUT",
       body: JSON.stringify(data),
@@ -99,7 +99,7 @@ export const ProfileView = ({ user, setUser, token, setToken, movies }) => {
         <h4>Your Favorite Movies</h4>
         {favMovies.map((movie) => {
           return (
-            <Col className="mb-4" key={movie.id} md={3}>
+            <Col className="mb-4" key={movie.id} md={4} sm={6}>
               <MovieCard movie={movie} />
             </Col>
           );
