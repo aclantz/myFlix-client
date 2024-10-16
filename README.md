@@ -1,12 +1,15 @@
 # MyFlix Movie App
-### Full-Stack-Immersion Achievement 3
+CareerFoundry Full-Stack-Immersion Achievement 3
+
+## Description
 Welcome to myFlix, a web application that allows users to explore a collection of movies, create profiles, and save movies as their favorites.
 
 ## Overview
 MyFlix is a full stack application built with React, Node.js, Express, and MongoDB. This achievement in my Career Foundry course is focused on learning to use React and building a front end application to connect to an API I built in a previous achievement.
 
-## Link to site hosted by Netlify
-https://myflixacl.netlify.app
+## Links 
+Hosted on Netlify  
+Site Link: https://myflixacl.netlify.app
 
 ## Setup Development Environment
 Start Development server:
@@ -38,3 +41,5 @@ Profile view
 - Allows users to remove a movie from their list of favorites
 - Allows existing users to deregister
 
+## About
+Hi! this is Alex, I am an emerging web developer and this project was part of my Full-Stack Web Development course with CareerFoundry. If you are curious or have more questions for me check out my portfolio for contact information. https://linktr.ee/alexlantz
